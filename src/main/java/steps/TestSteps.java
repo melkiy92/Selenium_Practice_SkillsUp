@@ -26,9 +26,10 @@ public class TestSteps extends BaseSteps {
 
     @When("page contains tutors")
     public void tutorsFound() {
-        WebElement tutor = wd.findElement(By.partialLinkText());
-        System.out.println(tutor.getText());
-        assertTrue(tutor.isDisplayed());
+        TutorPage tutorPage = new TutorPage(wd);
+        ArrayList <Person> tutors = new ArrayList();
+        tutors = tutorPage.getCards();
+        assertTrue(! tutors.isEmpty());
     }
 
     @Then("verify that position for $tutorName is $expectedPosition")
