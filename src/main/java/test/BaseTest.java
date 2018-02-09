@@ -1,6 +1,8 @@
+package test;
+
+import driver.DriverConfig;
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -25,14 +27,4 @@ public class BaseTest {
     public void tearDown() {
         wd.quit();
     }
-
-    public boolean isAlertPresent(FirefoxDriver wd) {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
-
 }

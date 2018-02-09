@@ -1,12 +1,15 @@
+package test;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import page.BasePage;
+import page.TutorPage;
+import test.BaseTest;
 
 import static org.junit.Assert.assertEquals;
 
-public class JavaScriptClass extends BaseTest{
+public class JavaScriptClass extends BaseTest {
 
     @Test
     public void verifyJSHome() throws InterruptedException {
@@ -19,7 +22,7 @@ public class JavaScriptClass extends BaseTest{
     @Test
     public void verifyJS() throws InterruptedException {
         BasePage basePage = new BasePage(wd);
-        basePage.js.executeScript("alert(confirm('Question?'));");
+        basePage.executeJavaScript("alert(confirm('Question?'));");
         Thread.sleep(5000L);
         Alert alert = wd.switchTo().alert();
         String textOnAlert = alert.getText();

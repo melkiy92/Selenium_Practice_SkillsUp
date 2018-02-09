@@ -50,16 +50,16 @@ import java.util.NoSuchElementException;
         return member.findElement(memberPosition).getText();
     }
 
-    public ArrayList<Person> getCards(String site) {
+    public ArrayList<domain.Person> getCards(String site) {
         driver.get(site);
         List<WebElement> members = getMembers();
         System.out.println(members.size());
-        ArrayList <Person> persons = new ArrayList();
+        ArrayList <domain.Person> persons = new ArrayList();
 
         for (WebElement member: members) {
             String name = member.findElement(memberName).getText();
             String position = member.findElement(memberPosition).getText();
-            Person person = new Person(name, position);
+            domain.Person person = new domain.Person(name, position);
             System.out.println(person.toString());
             persons.add(person);
         }
@@ -68,8 +68,8 @@ import java.util.NoSuchElementException;
 
     private String getPosition (String tutorName) {
         String foundPosition = null;
-        ArrayList <Person> cards = getCards(site);
-        for(Person person:cards){
+        ArrayList <domain.Person> cards = getCards(site);
+        for(domain.Person person:cards){
             if(person.name.equals(tutorName)) {
                 foundPosition = person.position;
                 System.out.println(person.name + " has position: " + person.position);

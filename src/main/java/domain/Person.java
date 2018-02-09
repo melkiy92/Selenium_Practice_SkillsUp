@@ -1,6 +1,8 @@
+package domain;
+
 public class Person {
-    String name;
-    String position;
+    public String name;
+    public String position;
 
     public Person(String name, String position) {
         this.name = name;
@@ -9,7 +11,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "domain.Person{" +
                 "name='" + name + '\'' +
                 ", position='" + position + '\'' +
                 '}';

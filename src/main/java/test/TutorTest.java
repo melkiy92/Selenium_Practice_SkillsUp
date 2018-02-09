@@ -1,14 +1,15 @@
+package test;
+
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import page.BasePage;
+import page.TutorPage;
+import test.BaseTest;
 
 import static org.junit.Assert.assertEquals;
 
 public class TutorTest extends BaseTest {
-    //Why doesn't work?
-    //TutorPage tutorPage = new TutorPage(wd);
 
-    String errorMessagePosition = "Position doesn't match";
+    private String errorMessagePosition = "Position doesn't match";
     @Test
     public void verifyPositionYakovenko() {
         TutorPage tutorPage = new TutorPage(wd);
