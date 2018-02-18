@@ -17,6 +17,17 @@ public class BasePage {
 
     protected WebDriver wd;
 
+    protected String mainPage = "http://skillsup.ua/";
+    protected String ourTeamPage = "http://skillsup.ua/about/our-team/";
+
+    public void openMainPage(){
+        wd.get(mainPage);
+    }
+
+    public void openOurTeamPage(){
+        wd.get(ourTeamPage);
+    }
+
     public void executeJavaScript(String jsCode) {
         JavascriptExecutor js = (JavascriptExecutor) wd;
         js.executeScript(jsCode);

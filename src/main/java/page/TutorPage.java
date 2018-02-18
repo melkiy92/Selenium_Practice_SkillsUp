@@ -15,11 +15,9 @@ public class TutorPage extends BasePage {
             super(wd);
         }
 
-        private String site = "http://skillsup.ua/about/our-team/";
         private By member = By.className("member");
         private By memberName = By.className("name");
         private By memberPosition = By.className("position");
-
 
         private List<WebElement> getMembers() {
             return wd.findElements(member);
@@ -31,21 +29,15 @@ public class TutorPage extends BasePage {
             return member.findElement(memberPosition).getText();
         }
 
-        public void openPage(String site){
-            wd.get(site);
-            //TODO waitUntil page is loadrd
-        }
         public ArrayList<Person> getCards() {
-            //openPage(site);
+
             List<WebElement> members = getMembers();
-            //System.out.println(members.size());
             ArrayList <Person> persons = new ArrayList();
 
             for (WebElement member: members) {
                 String name = getMemberName(member);
                 String position = getMemberPosition(member);
                 Person person = new Person(name, position);
-                //System.out.println(person.toString());
                 persons.add(person);
             }
             return persons;
@@ -57,13 +49,12 @@ public class TutorPage extends BasePage {
             for(Person person:cards){
                 if(person.name.equals(tutorName)) {
                     foundPosition = person.position;
-                    System.out.println(person.name + " имеет позицию: " + person.position);
+                    //System.out.println(person.name + " имеет позицию: " + person.position);
                     break;
                 }
             }
             if( foundPosition.equals(null) ) throw new NoSuchElementException(tutorName + " was not found on the page.");
             return foundPosition;
-            //retutn null
         }
 
     }

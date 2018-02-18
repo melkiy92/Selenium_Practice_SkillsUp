@@ -21,8 +21,8 @@ import static org.jbehave.core.reporters.StoryReporterBuilder.Format.*;
 
 public class WebDriverStories extends JUnitStories {
     public WebDriverStories() {
-        configuredEmbedder().embedderControls().doGenerateViewAfterStories(true).doIgnoreFailureInStories(false)
-                .doIgnoreFailureInView(true);
+        configuredEmbedder().embedderControls().doGenerateViewAfterStories(true).doIgnoreFailureInStories(true)
+                .doIgnoreFailureInView(true).useThreads(1).useStoryTimeoutInSecs(60);
     }
 
     @Override

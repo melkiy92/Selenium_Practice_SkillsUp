@@ -13,9 +13,8 @@ public class JavaScriptClass extends BaseTest {
 
     @Test
     public void verifyJSHome() throws InterruptedException {
-        //basePage.executeJavaScript("alert(confirm('Question?'));");
-        BasePage basePage = new BasePage(wd);
         TutorPage tutorPage = new TutorPage(wd);
+        tutorPage.openOurTeamPage();
         tutorPage.waitForElement(By.className("member"), 10);
     }
 
@@ -33,26 +32,19 @@ public class JavaScriptClass extends BaseTest {
         boolean f;
         try {
             wd.switchTo().alert();
-             f = true;
-        } catch (NoAlertPresentException e ) {
+            f = true;
+        } catch (NoAlertPresentException e) {
             f = false;
         }
         Assert.assertTrue(!f);
-        }
-
-        //js.executeScript("alert('Hello world');");
-       /*wd.get("http://skillsup.ua/about/our-team/");
-
-        //TODO move to the Base Page into method(locator, time): to wait for element on any page
-        //TODO wait on presence o Alert
-
-        WebDriverWait wait = new WebDriverWait(wd, 10);
-        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.className("member")));
-
-        WebElement simchak =  wd.findElement(By.linkText("Ольга Симчак\n            \n            \n              тренер, PSPO, PSM"));
-        //WebElement member = (WebElement) js.executeScript("return document.getElementsByClassName('member')[0];");
-        String name = simchak.findElement(By.className("name")).getText();
-        System.out.println(name);
-        //Thread.sleep(5000L); */
     }
+
+    @Test
+    public void getMemberViaJS() {
+        wd.get("http://skillsup.ua/about/our-team/");
+        JavascriptExecutor js = (JavascriptExecutor) wd;
+        WebElement member = (WebElement) js.executeScript("return document.getElementsByClassName('member')[0];");
+        System.out.println(member.getText());
+    }
+}
 

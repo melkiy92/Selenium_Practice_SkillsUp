@@ -5,9 +5,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
+import page.ActionPage;
 import page.BasePage;
 import page.TutorPage;
 import test.BaseTest;
+
+import static org.junit.Assert.assertTrue;
 
 public class ActionTest extends BaseTest {
     @Test
@@ -17,7 +20,6 @@ public class ActionTest extends BaseTest {
         WebElement foundElement = wd.findElement(By.xpath("html/body/select"));
         Select select = new Select(foundElement);
         //select.selectByValue("opel");
-        //Thread.sleep(5000L);
         select.selectByIndex(3);
         Thread.sleep(5000L);
     }
@@ -30,20 +32,22 @@ public class ActionTest extends BaseTest {
         WebElement element = wd.findElement(By.xpath("html/body/div[2]/div/div[1]/div[4]/div[2]/div[1]/ul/li[2]/a"));
         builder.moveToElement(dropdown).click().moveToElement(element).clickAndHold().build().perform();
         Thread.sleep(5000L);
-
     }
 
     @Test
-    public void getOurTeamPage() throws InterruptedException{
-        Actions builder = new Actions(wd);
-        wd.get("http://skillsup.ua/");
-        WebElement dropdown = wd.findElement(By.xpath(".//*[@id='menu3039']/a"));
-        WebElement element = wd.findElement(By.xpath(".//*[@id='menu3039']/ul/li[1]/a"));
-        builder.moveToElement(dropdown).perform();
-        builder.moveToElement(element).click().perform();
-        Thread.sleep(5000L);
+    public void getOurTeamPage() throws InterruptedException {
+        ActionPage actionPage = new ActionPage(wd);
+        actionPage.openMainPage();
+        actionPage.getOurTeamPage();
+        System.out.println(wd.getTitle());
     }
 
-
+    @Test
+    public void getDivingIntoJavaPage() throws InterruptedException {
+        ActionPage actionPage = new ActionPage(wd);
+        actionPage.openMainPage();
+        actionPage.getDivingIntoJavaPage();
+        assertTrue(actionPage.findTutor("Оксана Синяева"));
+    }
 }
 
